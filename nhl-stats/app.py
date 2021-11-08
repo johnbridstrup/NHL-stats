@@ -13,7 +13,7 @@ data = req.json()
 
 teams = {team['id']: team['name'] for team in data['teams']}
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
 
 layout = html.Div([
     html.H1('Select Team'),
@@ -123,5 +123,7 @@ def player_info(cell, team):
     return [layout]
 
 app.layout = layout
+
+server = app.server
 
 app.run_server(debug=True)
